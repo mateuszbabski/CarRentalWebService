@@ -11,7 +11,7 @@
 //    {
 //        public DateTime ReservationStart { get; set; }
 //        public DateTime ReservationEnd { get; set; }
-//        public string Status { get; set; }
+//        public Status Status { get; set; }
 //        public decimal DailyCost { get; set; }
 
 //        public virtual Customer CustomerId { get; set; }

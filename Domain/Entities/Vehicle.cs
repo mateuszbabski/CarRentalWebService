@@ -13,11 +13,12 @@
 //        public string Model { get; set; }
 //        public string Type { get; set; }
 //        public int NumberOfSeats { get; set; }
-//        public string FuelType { get; set; }
-//        public decimal DailyCost { get; set; }
+//        public FuelType FuelType { get; set; }
 //        public int ProductionYear { get; set; }
 //        public string Color { get; set; }
 //        public bool IsAvailable { get; set; }
+//        public decimal DailyCost { get; set; }
+
 //        public virtual RentalCompany RentalCompanyId { get; set; }
 //    }
 //}

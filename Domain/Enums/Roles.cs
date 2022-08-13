@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
-namespace Domain.Enums
-{
-    public enum Roles
-    {
-        Admin,
-        Customer,
-        Company
+//namespace Domain.Enums
+//{
+//    public enum Roles
+//    {
+//        Admin,
+//        Customer,
+//        Company
+//    }
+//}
         
-    }
-}
