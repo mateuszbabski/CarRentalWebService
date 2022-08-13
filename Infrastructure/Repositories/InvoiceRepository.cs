@@ -1,12 +1,13 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using Application.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-//namespace Infrastructure.Repositories
-//{
-//    internal class InvoiceRepository
-//    {
-//    }
-//}
+namespace Infrastructure.Repositories
+{
+    public class InvoiceRepository : IInvoiceRepository
+    {
+    }
+}

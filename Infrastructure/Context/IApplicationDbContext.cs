@@ -10,5 +10,6 @@ namespace Infrastructure.Context
         DbSet<RentalCompany> RentalCompanies { get; set; }
         DbSet<Reservation> Reservations { get; set; }
         DbSet<Vehicle> Vehicles { get; set; }
+        Task<int> SaveChangesAsync();
     }
 }

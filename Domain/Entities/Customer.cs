@@ -1,4 +1,5 @@
 ﻿using Domain.Common;
+using Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,10 @@ namespace Domain.Entities
         public string PhoneNumber { get; set; }
         public string DriverLicence { get; set; }
 
+        public Roles Role { get; set; }
         public string PasswordSalt { get; set; }
         public string PasswordHash { get; set; }
-        public string PasswordResetToken { get; set; }
+        public string? PasswordResetToken { get; set; }
         public DateTime? ResetTokenExpires { get; set; }
 
         public virtual List<Reservation> ReservationsHistory { get; set; }
