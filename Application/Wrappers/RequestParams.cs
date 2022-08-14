@@ -9,6 +9,7 @@ namespace Application.Wrappers
     public class RequestParams
     {
         public string? SearchPhrase { get; set; }
+
         const int maxPageSize = 25;
         public int PageNumber { get; set; } = 1;
 
