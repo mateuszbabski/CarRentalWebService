@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Application.Middleware;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,11 @@ namespace Application
 {
     public static class ServiceExtensions
     {
+        public static IServiceCollection AddApplicationLayer(this IServiceCollection services)
+        {
+            services.AddTransient<ErrorHandlingMiddleware>();
+
+            return services;
+        }
     }
 }
