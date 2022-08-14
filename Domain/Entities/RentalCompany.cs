@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class RentalCompany : BaseEntity
+    public class RentalCompany : AuditableBaseEntity
     {
         public string CompanyName { get; set; }
         public string CompanyIdentificationNumber { get; set; }

@@ -31,35 +31,35 @@ namespace Application.Authentication
 
             RuleFor(m => m.FirstName)
                 .NotEmpty()
-                .WithMessage("Name can not be empty");
+                .WithMessage("Field can not be empty");
 
             RuleFor(m => m.LastName)
                 .NotEmpty()
-                .WithMessage("Name can not be empty");
+                .WithMessage("Field can not be empty");
 
             RuleFor(m => m.DateOfBirth)
                 .NotEmpty()
-                .WithMessage("Name can not be empty");
+                .WithMessage("Field can not be empty");
 
             RuleFor(m => m.DriverLicence)
                 .NotEmpty()
-                .WithMessage("Name can not be empty");
+                .WithMessage("Field can not be empty");
 
             RuleFor(m => m.Country)
                 .NotEmpty()
-                .WithMessage("Name can not be empty");
+                .WithMessage("Field can not be empty");
 
             RuleFor(m => m.City)
                 .NotEmpty()
-                .WithMessage("Name can not be empty");
+                .WithMessage("Field can not be empty");
 
             RuleFor(m => m.Street)
                 .NotEmpty()
-                .WithMessage("Name can not be empty");
+                .WithMessage("Field can not be empty");
 
             RuleFor(m => m.PostalCode)
                 .NotEmpty()
-                .WithMessage("Name can not be empty");
+                .WithMessage("Field can not be empty");
         }
     }
 }
