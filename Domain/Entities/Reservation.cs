@@ -15,9 +15,9 @@ namespace Domain.Entities
         public string Status { get; set; }
         public decimal DailyCost { get; set; }
 
-        public virtual Customer CustomerId { get; set; }
-        public virtual RentalCompany RentalCompanyId { get; set; }
-        public virtual Vehicle VehicleId { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual RentalCompany RentalCompany { get; set; }
+        public virtual Vehicle Vehicle { get; set; }
 
     }
 }

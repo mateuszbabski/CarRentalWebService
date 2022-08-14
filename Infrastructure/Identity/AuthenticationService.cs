@@ -103,7 +103,7 @@ namespace Infrastructure.Identity
             customer.ResetTokenExpires = DateTime.Now.AddDays(1);
             await _customerRepository.UpdateCustomerAsync(customer);
 
-            var route = "api/customer/reset-password";
+            var route = "api/account/reset-password";
             var origin = "https://localhost:";
             var endpointUri = new Uri(string.Concat($"{origin}/", route));
             var passwordResetUri = QueryHelpers.AddQueryString(endpointUri.ToString(), "token", customer.PasswordResetToken);

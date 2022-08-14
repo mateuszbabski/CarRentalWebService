@@ -14,11 +14,14 @@ namespace Domain.Entities
         public string LastName { get; set; }
         public string Email { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public Address Address { get; set; }
+        public string Country { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string PostalCode { get; set; }
         public string PhoneNumber { get; set; }
         public string DriverLicence { get; set; }
 
-        public Roles Role { get; set; }
+        public Roles Role { get; set; } = Roles.Customer;
         public byte[] PasswordSalt { get; set; }
         public byte[] PasswordHash { get; set; }
         public string? PasswordResetToken { get; set; }

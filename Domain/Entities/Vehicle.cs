@@ -20,6 +20,6 @@ namespace Domain.Entities
         public bool IsAvailable { get; set; }
         public decimal DailyCost { get; set; }
 
-        public virtual RentalCompany RentalCompanyId { get; set; }
+        public virtual RentalCompany RentalCompany { get; set; }
     }
 }

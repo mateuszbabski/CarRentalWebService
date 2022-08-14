@@ -9,10 +9,10 @@ namespace Domain.Entities
 {
     public class Invoice : BaseEntity
     {
-        public virtual Customer CustomerId { get; set; }
-        public virtual RentalCompany RentalCompanyId { get; set; }
-        public virtual Reservation ReservationId { get; set; }
-        public virtual Vehicle VehicleId { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual RentalCompany RentalCompany { get; set; }
+        public virtual Reservation Reservation { get; set; }
+        public virtual Vehicle Vehicle { get; set; }
 
         public decimal FullPriceForRenting { get; set; }
         public bool IsPaid { get; set; }
