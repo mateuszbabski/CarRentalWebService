@@ -30,6 +30,7 @@ namespace Infrastructure
             services.AddScoped<IRentalCompanyRepository, RentalCompanyRepository>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
+            
 
             services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
             services.AddTransient<IEmailService, EmailService>();

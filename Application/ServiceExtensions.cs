@@ -1,4 +1,5 @@
-﻿using Application.Middleware;
+﻿using Application.Interfaces;
+using Application.Middleware;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -17,6 +18,8 @@ namespace Application
             services.AddTransient<ErrorHandlingMiddleware>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+            
 
             return services;
         }
