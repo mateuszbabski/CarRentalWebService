@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Domain.Settings;
 using Infrastructure.Context;
+using Infrastructure.Identity;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -30,7 +31,7 @@ namespace Infrastructure
             services.AddScoped<IRentalCompanyRepository, RentalCompanyRepository>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
-            
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
             services.AddTransient<IEmailService, EmailService>();

@@ -8,5 +8,10 @@ namespace Application.Authentication
 {
     public class AuthenticationResponse
     {
+        public bool IsSuccess { get; set; }
+        public string[] Errors { get; set; }
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string JWTToken { get; set; }
     }
 }

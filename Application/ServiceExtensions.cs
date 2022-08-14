@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Authentication;
+using Application.Interfaces;
 using Application.Middleware;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +20,10 @@ namespace Application
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-            
+            services.AddScoped<IValidator<RegisterRentalCompanyRequest>, RegisterRentalCompanyValidator>();
+            services.AddScoped<IValidator<RegisterCustomerRequest>, RegisterCustomerValidator>();
+
+
 
             return services;
         }

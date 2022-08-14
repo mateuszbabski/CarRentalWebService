@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Authentication
+namespace Application.Interfaces
 {
-    internal class LoginUserRequest
+    public interface IAuthenticationService
     {
     }
 }

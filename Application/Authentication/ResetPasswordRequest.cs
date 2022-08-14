@@ -7,10 +7,18 @@ using System.Threading.Tasks;
 
 namespace Application.Authentication
 {
-    public class ForgotPasswordRequest
+    public class ResetPasswordRequest
     {
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
+        [Required]
+        [MinLength(6)]
+        public string Password { get; set; }
+
+        [Required]
+        [Compare("Password")]
+        public string PasswordConfirmation { get; set; }
     }
 }

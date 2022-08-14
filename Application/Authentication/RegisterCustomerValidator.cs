@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Application.Authentication
 {
-    public class RegisterRentalCompanyValidator : AbstractValidator<RegisterRentalCompanyRequest>
+    public class RegisterCustomerValidator : AbstractValidator<RegisterCustomerRequest>
     {
-        public RegisterRentalCompanyValidator()
+        public RegisterCustomerValidator()
         {
             RuleFor(m => m.Email)
                 .NotEmpty()
@@ -29,37 +29,37 @@ namespace Application.Authentication
                 .Matches("^[0-9]*$")
                 .WithMessage("Only digits allowed");
 
-            RuleFor(m => m.CompanyName)
+            RuleFor(m => m.FirstName)
                 .NotEmpty()
                 .WithMessage("Name can not be empty");
 
-            RuleFor(m => m.CompanyIdentificationNumber)
-                .NotEmpty()
-                .WithMessage("Insert correct Identification Number");
-
-            RuleFor(m => m.OwnerFirstName)
+            RuleFor(m => m.LastName)
                 .NotEmpty()
                 .WithMessage("Name can not be empty");
 
-            RuleFor(m => m.OwnerLastName)
+            RuleFor(m => m.DateOfBirth)
+                .NotEmpty()
+                .WithMessage("Name can not be empty");
+
+            RuleFor(m => m.DriverLicence)
                 .NotEmpty()
                 .WithMessage("Name can not be empty");
 
             RuleFor(m => m.Country)
                 .NotEmpty()
-                .WithMessage("Insert full address");
+                .WithMessage("Name can not be empty");
 
             RuleFor(m => m.City)
                 .NotEmpty()
-                .WithMessage("Insert full address");
+                .WithMessage("Name can not be empty");
 
             RuleFor(m => m.Street)
                 .NotEmpty()
-                .WithMessage("Insert full address");
+                .WithMessage("Name can not be empty");
 
             RuleFor(m => m.PostalCode)
                 .NotEmpty()
-                .WithMessage("Insert full address");
+                .WithMessage("Name can not be empty");
         }
     }
 }

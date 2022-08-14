@@ -7,9 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Customer\Commands\" />
     <Folder Include="Features\Customer\Queries\" />
+    <Folder Include="Features\Invoice\Commands\" />
+    <Folder Include="Features\Invoice\Queries\" />
     <Folder Include="Features\RentalCompany\Commands\" />
     <Folder Include="Features\RentalCompany\Queries\" />
+    <Folder Include="Features\Reservation\Commands\" />
+    <Folder Include="Features\Reservation\Queries\" />
     <Folder Include="Features\Vehicle\Commands\" />
     <Folder Include="Features\Vehicle\Queries\" />
   </ItemGroup>
