@@ -18,7 +18,7 @@ namespace Api.Controllers
         [HttpPost("authenticate")]
         public async Task<IActionResult> AuthenticateAsync([FromBody] AuthenticateUserRequest request)
         {
-            return Ok(await _authenticationService.LoginAsync(request));
+            return Ok(await _authenticationService.LoginCustomerAsync(request));
         }
 
         [HttpPost("register-customer")]
@@ -31,7 +31,7 @@ namespace Api.Controllers
         {
             return Ok(await _authenticationService.ForgotPasswordAsync(request));
         }
-        [HttpPost]
+        [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPasswordAsync([FromBody] ResetPasswordRequest request, [FromQuery]string token)
         {
             return Ok(await _authenticationService.ResetPasswordAsync(request, token));

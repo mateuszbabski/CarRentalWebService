@@ -1,6 +1,7 @@
 using Api.Services;
 using Application;
 using Application.Interfaces;
+using FluentValidation.AspNetCore;
 using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
@@ -11,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplicationLayer();
 builder.Services.AddInfrastructureLayer(builder.Configuration);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddFluentValidation();
 
 builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 

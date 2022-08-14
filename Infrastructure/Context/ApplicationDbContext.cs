@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Domain.Common;
 using Domain.Entities;
+using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,18 @@ namespace Infrastructure.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+
+            modelBuilder
+                .Entity<Customer>()
+                .Property(p => p.Role)
+                .HasConversion(v => v.ToString(),
+                v => (Roles)Enum.Parse(typeof(Roles), v));
+
+            modelBuilder
+                .Entity<RentalCompany>()
+                .Property(p => p.Role)
+                .HasConversion(v => v.ToString(),
+                v => (Roles)Enum.Parse(typeof(Roles), v));
         }
     }
 }

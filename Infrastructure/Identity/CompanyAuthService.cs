@@ -4,11 +4,11 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Settings;
+using Infrastructure.Repositories;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Metrics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -18,55 +18,55 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Identity
 {
-    public class AuthenticationService : IAuthenticationService
+    public class CompanyAuthService : ICompanyAuthService
     {
         private readonly JWTSettings _jwtSettings;
         private readonly IMapper _mapper;
         private readonly IEmailService _emailService;
-        private readonly ICustomerRepository _customerRepository;
+        private readonly IRentalCompanyRepository _rentalCompanyRepository;
 
-        public AuthenticationService(
+        public CompanyAuthService(
             JWTSettings jwtSettings,
             IMapper mapper,
             IEmailService emailService,
-            ICustomerRepository customerRepository)
+            IRentalCompanyRepository rentalCompanyRepository)
         {
             _jwtSettings = jwtSettings;
             _mapper = mapper;
             _emailService = emailService;
-            _customerRepository = customerRepository;
+            _rentalCompanyRepository = rentalCompanyRepository;
         }
 
-        public async Task<AuthenticationResponse> LoginCustomerAsync(AuthenticateUserRequest request)
+        public async Task<AuthenticationResponse> LoginRentalCompanyAsync(AuthenticateUserRequest request)
         {
-            var customer = await _customerRepository.GetCustomerByEmailAsync(request.Email);
-            if (customer == null)
+            var rentalCompany = await _rentalCompanyRepository.GetRentalCompanyByEmailAsync(request.Email);
+            if (rentalCompany == null)
                 return new AuthenticationResponse
                 {
                     IsSuccess = false,
                     Errors = new[] { "Email or password incorrect" }
                 };
 
-            if (!VerifyPasswordHash(request.Password, customer.PasswordHash, customer.PasswordSalt))
+            if (!VerifyPasswordHash(request.Password, rentalCompany.PasswordHash, rentalCompany.PasswordSalt))
                 return new AuthenticationResponse
                 {
                     IsSuccess = false,
                     Errors = new[] { "Email or password incorrect" }
                 };
 
-            var token = GenerateJwtToken(customer);
+            var token = GenerateJwtToken(rentalCompany);
 
             return new AuthenticationResponse
             {
                 IsSuccess = true,
-                Id = customer.Id,
+                Id = rentalCompany.Id,
                 JWTToken = token
             };
         }
 
-        public async Task<AuthenticationResponse> RegisterCustomerAsync(RegisterCustomerRequest request)
+        public async Task<AuthenticationResponse> RegisterRentalCompanyAsync(RegisterRentalCompanyRequest request)
         {
-            var isEmailInUse = await _customerRepository.GetCustomerByEmailAsync(request.Email);
+            var isEmailInUse = await _rentalCompanyRepository.GetRentalCompanyByEmailAsync(request.Email);
             if (isEmailInUse != null)
                 return new AuthenticationResponse
                 {
@@ -76,42 +76,42 @@ namespace Infrastructure.Identity
 
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
-            var newCustomer = _mapper.Map<Customer>(request);
-            newCustomer.PasswordHash = passwordHash;
-            newCustomer.PasswordSalt = passwordSalt;
+            var newCompany = _mapper.Map<RentalCompany>(request);
+            newCompany.PasswordHash = passwordHash;
+            newCompany.PasswordSalt = passwordSalt;
 
-            await _customerRepository.RegisterNewCustomerAsync(newCustomer);
+            await _rentalCompanyRepository.RegisterNewRentalCompanyAsync(newCompany);
 
             return new AuthenticationResponse
             {
                 IsSuccess = true,
-                Id = newCustomer.Id,
-                Email = newCustomer.Email
+                Id = newCompany.Id,
+                Email = newCompany.Email
             };
         }
 
         public async Task<ForgotPasswordResponse> ForgotPasswordAsync(ForgotPasswordRequest request)
         {
-            var customer = await _customerRepository.GetCustomerByEmailAsync(request.Email);
-            if (customer == null)
+            var rentalCompany = await _rentalCompanyRepository.GetRentalCompanyByEmailAsync(request.Email);
+            if (rentalCompany == null)
                 return new ForgotPasswordResponse
                 {
                     IsSuccess = false,
                     Errors = "Invalid email"
                 };
 
-            customer.PasswordResetToken = CreateRandomToken();
-            customer.ResetTokenExpires = DateTime.Now.AddDays(1);
-            await _customerRepository.UpdateCustomerAsync(customer);
+            rentalCompany.PasswordResetToken = CreateRandomToken();
+            rentalCompany.ResetTokenExpires = DateTime.Now.AddDays(1);
+            await _rentalCompanyRepository.UpdateRentalCompanyAsync(rentalCompany);
 
             var route = "api/account/reset-password";
             var origin = "https://localhost:";
             var endpointUri = new Uri(string.Concat($"{origin}/", route));
-            var passwordResetUri = QueryHelpers.AddQueryString(endpointUri.ToString(), "token", customer.PasswordResetToken);
+            var passwordResetUri = QueryHelpers.AddQueryString(endpointUri.ToString(), "token", rentalCompany.PasswordResetToken);
 
             var emailRequest = new EmailRequest()
             {
-                Body = $"Reset token - {customer.PasswordResetToken} - {passwordResetUri}",
+                Body = $"Reset token - {rentalCompany.PasswordResetToken} - {passwordResetUri}",
                 To = request.Email,
                 Subject = "Reset Password Token"
             };
@@ -127,10 +127,10 @@ namespace Infrastructure.Identity
 
         public async Task<ForgotPasswordResponse> ResetPasswordAsync(ResetPasswordRequest request, string token)
         {
-            var customer = await _customerRepository.GetCustomerByEmailAsync(request.Email);
-            if (customer == null || customer.PasswordResetToken == null
-                             || customer.PasswordResetToken != token
-                             || customer.ResetTokenExpires < DateTime.Now)
+            var rentalCompany = await _rentalCompanyRepository.GetRentalCompanyByEmailAsync(request.Email);
+            if (rentalCompany == null || rentalCompany.PasswordResetToken == null
+                             || rentalCompany.PasswordResetToken != token
+                             || rentalCompany.ResetTokenExpires < DateTime.Now)
                 return new ForgotPasswordResponse
                 {
                     IsSuccess = false,
@@ -139,12 +139,12 @@ namespace Infrastructure.Identity
 
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
-            customer.PasswordHash = passwordHash;
-            customer.PasswordSalt = passwordSalt;
-            customer.PasswordResetToken = null;
-            customer.ResetTokenExpires = null;
-            
-            await _customerRepository.UpdateCustomerAsync(customer);
+            rentalCompany.PasswordHash = passwordHash;
+            rentalCompany.PasswordSalt = passwordSalt;
+            rentalCompany.PasswordResetToken = null;
+            rentalCompany.ResetTokenExpires = null;
+
+            await _rentalCompanyRepository.UpdateRentalCompanyAsync(rentalCompany);
             return new ForgotPasswordResponse
             {
                 IsSuccess = true,
@@ -153,16 +153,16 @@ namespace Infrastructure.Identity
 
         }
 
-        private string GenerateJwtToken(Customer customer)
+        private string GenerateJwtToken(RentalCompany rentalCompany)
         {
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtSettings.Key));
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, customer.Id.ToString()),
-                new Claim(ClaimTypes.Email, $"{customer.Email}"),
-                new Claim(ClaimTypes.Role, $"{customer.Role}"),
-                new Claim(ClaimTypes.Country, $"{customer.Country}")
+                new Claim(ClaimTypes.NameIdentifier, rentalCompany.Id.ToString()),
+                new Claim(ClaimTypes.Email, $"{rentalCompany.Email}"),
+                new Claim(ClaimTypes.Role, $"{rentalCompany.Role}"),
+                new Claim(ClaimTypes.Country, $"{rentalCompany.Country}")
             };
 
             var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -181,7 +181,7 @@ namespace Infrastructure.Identity
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
-        { 
+        {
             using (var hmac = new HMACSHA512())
             {
                 passwordSalt = hmac.Key;
@@ -189,7 +189,7 @@ namespace Infrastructure.Identity
             }
         }
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
-        { 
+        {
             using (var hmac = new HMACSHA512(passwordSalt))
             {
                 var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
@@ -200,9 +200,5 @@ namespace Infrastructure.Identity
         {
             return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
         }
-
-
     }
 }
-
-

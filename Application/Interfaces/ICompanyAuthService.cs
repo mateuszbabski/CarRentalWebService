@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
-    public interface IAuthenticationService
+    public interface ICompanyAuthService
     {
-        Task<AuthenticationResponse> LoginCustomerAsync(AuthenticateUserRequest request);
-        Task<AuthenticationResponse> RegisterCustomerAsync(RegisterCustomerRequest request);
+        Task<AuthenticationResponse> LoginRentalCompanyAsync(AuthenticateUserRequest request);
+        Task<AuthenticationResponse> RegisterRentalCompanyAsync(RegisterRentalCompanyRequest request);
         Task<ForgotPasswordResponse> ForgotPasswordAsync(ForgotPasswordRequest request);
         Task<ForgotPasswordResponse> ResetPasswordAsync(ResetPasswordRequest request, string token);
 

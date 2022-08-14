@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class RentalCompany : AuditableBaseEntity
+    public class RentalCompany : BaseEntity
     {
         public string CompanyName { get; set; }
         public string CompanyIdentificationNumber { get; set; }
@@ -21,9 +21,9 @@ namespace Domain.Entities
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
 
-        public Roles Role { get; set; }
-        public string PasswordSalt { get; set; }
-        public string PasswordHash { get; set; }
+        public Roles Role { get; set; } = Roles.Company;
+        public byte[] PasswordSalt { get; set; }
+        public byte[] PasswordHash { get; set; }
         public string PasswordResetToken { get; set; }
         public DateTime? ResetTokenExpires { get; set; }
 
