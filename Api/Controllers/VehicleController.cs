@@ -2,6 +2,7 @@
 using Application.Features.Vehicles.Commands.CreateVehicle;
 using Application.Features.Vehicles.Commands.DeleteVehicle;
 using Application.Features.Vehicles.Commands.UpdateVehicle;
+using Application.Features.Vehicles.Queries.GetAllVehiclesForCompany;
 using Application.Features.Vehicles.Queries.GetAllVehiclesList;
 using Application.Features.Vehicles.Queries.GetVehicleById;
 using MediatR;
@@ -60,6 +61,17 @@ namespace Api.Controllers
             var vehicle = await _mediator.Send(new GetVehicleByIdQuery()
             {
                 Id = id
+            });
+
+            return Ok(vehicle);
+        }
+
+        [HttpGet("GetVehicleByCompanyId")]
+        public async Task<ActionResult<IEnumerable<VehicleViewModel>>> GetByCompanyId(int id)
+        {
+            var vehicle = await _mediator.Send(new GetAllVehiclesForCompanyQuery()
+            {
+                companyId = id
             });
 
             return Ok(vehicle);

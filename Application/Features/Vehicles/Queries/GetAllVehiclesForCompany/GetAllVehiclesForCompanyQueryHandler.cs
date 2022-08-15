@@ -8,21 +8,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Vehicles.Queries.GetAllVehiclesList
+namespace Application.Features.Vehicles.Queries.GetAllVehiclesForCompany
 {
-    public class GetAllVehiclesListQueryHandler : IRequestHandler<GetAllVehiclesListQuery, IEnumerable<VehicleViewModel>>
+    public class GetAllVehiclesForCompanyQueryHandler : IRequestHandler<GetAllVehiclesForCompanyQuery, IEnumerable<VehicleViewModel>>
     {
         private readonly IVehicleRepository _repository;
         private readonly IMapper _mapper;
 
-        public GetAllVehiclesListQueryHandler(IVehicleRepository repository, IMapper mapper)
+        public GetAllVehiclesForCompanyQueryHandler(IVehicleRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<VehicleViewModel>> Handle(GetAllVehiclesListQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<VehicleViewModel>> Handle(GetAllVehiclesForCompanyQuery request, CancellationToken cancellationToken)
         {
-            var vehiclesList = await _repository.GetAllAsync();
+            var vehiclesList = await _repository.GetAllVehiclesForCompanyAsync(request.companyId);
             if (vehiclesList == null)
                 throw new NotFoundException();
 
