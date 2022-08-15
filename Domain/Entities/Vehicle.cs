@@ -19,7 +19,7 @@ namespace Domain.Entities
         public string Color { get; set; }
         public bool IsAvailable { get; set; }
         public decimal DailyCost { get; set; }
+        public int RentalCompanyId { get; set; }
 
-        public virtual RentalCompany RentalCompany { get; set; }
     }
 }

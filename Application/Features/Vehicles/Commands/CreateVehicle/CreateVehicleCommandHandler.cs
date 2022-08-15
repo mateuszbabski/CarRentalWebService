@@ -15,14 +15,17 @@ namespace Application.Features.Vehicles.Commands.CreateVehicle
     {
         private readonly IVehicleRepository _repository;
         private readonly IMapper _mapper;
+        private readonly ICurrentUserService _userService;
 
-        public CreateVehicleCommandHandler(IVehicleRepository repository, IMapper mapper)
+        public CreateVehicleCommandHandler(IVehicleRepository repository, IMapper mapper, ICurrentUserService userService)
         {
             _repository = repository;
             _mapper = mapper;
+            _userService = userService;
         }
         public async Task<int> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
         {
+            var companyId = _userService.UserId;
             var validator = new CreateVehicleCommandValidator();
             var validationResult = await validator.ValidateAsync(request);
 
@@ -30,6 +33,8 @@ namespace Application.Features.Vehicles.Commands.CreateVehicle
                 throw new ValidationException();
 
             var vehicle = _mapper.Map<Vehicle>(request);
+            vehicle.RentalCompanyId = companyId;
+
             vehicle = await _repository.AddAsync(vehicle);
 
             return vehicle.Id;

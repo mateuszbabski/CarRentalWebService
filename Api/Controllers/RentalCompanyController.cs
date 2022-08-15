@@ -1,5 +1,8 @@
 ﻿using Application.Authentication;
+using Application.Features.RentalCompanies.Queries.GetRentalCompanyById;
+using Application.Features.RentalCompany;
 using Application.Interfaces;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -9,10 +12,12 @@ namespace Api.Controllers
     public class RentalCompanyController : ControllerBase
     {
         private readonly ICompanyAuthService _companyAuthService;
+        private readonly IMediator _mediator;
 
-        public RentalCompanyController(ICompanyAuthService companyAuthService)
+        public RentalCompanyController(ICompanyAuthService companyAuthService, IMediator mediator)
         {
             _companyAuthService = companyAuthService;
+            _mediator = mediator;
         }
 
         [HttpPost("authenticate-company")]
@@ -35,6 +40,16 @@ namespace Api.Controllers
         public async Task<IActionResult> ResetPasswordAsync([FromBody] ResetPasswordRequest request, [FromQuery] string token)
         {
             return Ok(await _companyAuthService.ResetPasswordAsync(request, token));
+        }
+
+        [HttpGet("{id}", Name = "GetCompanyById")]
+        public async Task<ActionResult<RentalCompanyViewModel>> GetRentalCompanyById(int id)
+        {
+            var rentalCompany = await _mediator.Send(new GetRentalCompanyByIdQuery()
+            {
+                Id = id
+            });
+            return Ok(rentalCompany);
         }
     }
 }

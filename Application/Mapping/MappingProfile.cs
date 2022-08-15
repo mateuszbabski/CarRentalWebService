@@ -1,4 +1,5 @@
 ﻿using Application.Authentication;
+using Application.Features.RentalCompany;
 using Application.Features.Vehicles;
 using Application.Features.Vehicles.Commands.CreateVehicle;
 using AutoMapper;
@@ -30,6 +31,8 @@ namespace Application.Mapping
             CreateMap<CreateVehicleCommand, Vehicle>().ReverseMap();
 
             CreateMap<VehicleViewModel, Vehicle>().ReverseMap();
+
+            CreateMap<RentalCompanyViewModel, RentalCompany>().ReverseMap();
                 
                 
         }

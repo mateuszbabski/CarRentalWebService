@@ -19,6 +19,6 @@ namespace Application.Features.Vehicles
         public bool IsAvailable { get; set; }
         public decimal DailyCost { get; set; }
 
-        //public RentalCompany RentalCompanyName { get; set; }
+        
     }
 }

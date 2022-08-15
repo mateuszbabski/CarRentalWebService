@@ -30,6 +30,6 @@ namespace Domain.Entities
         public List<Vehicle> VehicleList { get; set; }
         public virtual List<Invoice> InvoicesHistory { get; set; }
         public virtual List<Reservation> ReservationList { get; set; }
-        //public virtual List<Customer> CustomerList { get; set; }
+        
     }
 }

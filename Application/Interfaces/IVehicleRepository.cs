@@ -10,5 +10,6 @@ namespace Application.Interfaces
     public interface IVehicleRepository : IGenericRepository<Vehicle>
     {
         Task<IEnumerable<Vehicle>> GetAllVehiclesForCompanyAsync(int companyId);
+        
     }
 }

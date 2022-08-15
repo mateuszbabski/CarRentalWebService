@@ -38,7 +38,7 @@ namespace Infrastructure.Repositories
 
         public async Task<RentalCompany> GetRentalCompanyByIdAsync(int id)
         {
-            return await _dbContext.RentalCompanies.FirstOrDefaultAsync(x => x.Id == id);
+            return await _dbContext.RentalCompanies.Include(x => x.VehicleList).FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }
