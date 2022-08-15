@@ -1,4 +1,5 @@
 ﻿using Application.Authentication;
+using Application.Features.Vehicles;
 using Application.Features.Vehicles.Commands.CreateVehicle;
 using AutoMapper;
 using Domain.Entities;
@@ -27,6 +28,8 @@ namespace Application.Mapping
             //    .ForMember(m => m.PostalCode, c => c.MapFrom(s => s.Address.PostalCode));
 
             CreateMap<CreateVehicleCommand, Vehicle>().ReverseMap();
+
+            CreateMap<VehicleViewModel, Vehicle>().ReverseMap();
                 
                 
         }

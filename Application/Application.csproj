@@ -30,8 +30,6 @@
     <Folder Include="Features\Reservations\Commands\UpdateReservation\" />
     <Folder Include="Features\Reservations\Queries\GetReservationById\" />
     <Folder Include="Features\Reservations\Queries\GetAllReservationsList\" />
-    <Folder Include="Features\Vehicles\Queries\GetAllVehiclesList\" />
-    <Folder Include="Features\Vehicles\Queries\GetVehicleById\" />
     <Folder Include="Features\Vehicles\Queries\GetVehicleBySearch\" />
   </ItemGroup>
 

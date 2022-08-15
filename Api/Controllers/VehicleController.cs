@@ -1,6 +1,9 @@
-﻿using Application.Features.Vehicles.Commands.CreateVehicle;
+﻿using Application.Features.Vehicles;
+using Application.Features.Vehicles.Commands.CreateVehicle;
 using Application.Features.Vehicles.Commands.DeleteVehicle;
 using Application.Features.Vehicles.Commands.UpdateVehicle;
+using Application.Features.Vehicles.Queries.GetAllVehiclesList;
+using Application.Features.Vehicles.Queries.GetVehicleById;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -42,6 +45,24 @@ namespace Api.Controllers
             };
             await _mediator.Send(deleteVehicleCommand);
             return NoContent();
+        }
+
+        [HttpGet("GetAllVehicles")]
+        public async Task<ActionResult<IEnumerable<VehicleViewModel>>> GetAll()
+        {
+            var vehiclesList = await _mediator.Send(new GetAllVehiclesListQuery());
+            return Ok(vehiclesList);
+        }
+
+        [HttpGet("{id}", Name = "GetVehicleById")]
+        public async Task<ActionResult<VehicleViewModel>> GetById(int id)
+        {
+            var vehicle = await _mediator.Send(new GetVehicleByIdQuery()
+            {
+                Id = id
+            });
+
+            return Ok(vehicle);
         }
     }
 }
