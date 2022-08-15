@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.UnitTest.Vehicle
+namespace Application.UnitTest.Vehicles
 {
     public class CreateVehicleTest
     {

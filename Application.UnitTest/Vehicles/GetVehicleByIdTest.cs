@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Application.UnitTest.Vehicle
+namespace Application.UnitTest.Vehicles
 {
     public class GetVehicleByIdTest
     {
