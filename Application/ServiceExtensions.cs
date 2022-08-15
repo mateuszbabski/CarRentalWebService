@@ -2,6 +2,7 @@
 using Application.Interfaces;
 using Application.Middleware;
 using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace Application
             services.AddTransient<ErrorHandlingMiddleware>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddScoped<IValidator<RegisterRentalCompanyRequest>, RegisterRentalCompanyValidator>();
             services.AddScoped<IValidator<RegisterCustomerRequest>, RegisterCustomerValidator>();

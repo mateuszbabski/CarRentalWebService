@@ -27,7 +27,9 @@ namespace Domain.Entities
         public string PasswordResetToken { get; set; }
         public DateTime? ResetTokenExpires { get; set; }
 
-        public virtual List<Vehicle> VehicleList { get; set; }
+        public List<Vehicle> VehicleList { get; set; }
         public virtual List<Invoice> InvoicesHistory { get; set; }
+        public virtual List<Reservation> ReservationList { get; set; }
+        //public virtual List<Customer> CustomerList { get; set; }
     }
 }

@@ -36,6 +36,10 @@ namespace Infrastructure.Repositories
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }
+        //public async Task<T> GetByEmailAsync(string email)
+        //{
+        //    return await _dbContext.Set<T>().FirstOrDefaultAsync();
+        //}
         public async Task UpdateAsync(T entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;

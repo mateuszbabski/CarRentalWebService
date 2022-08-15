@@ -301,7 +301,7 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("CustomerId");
 
                     b.HasOne("Domain.Entities.RentalCompany", "RentalCompany")
-                        .WithMany()
+                        .WithMany("ReservationList")
                         .HasForeignKey("RentalCompanyId");
 
                     b.HasOne("Domain.Entities.Vehicle", "Vehicle")
@@ -334,6 +334,8 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.RentalCompany", b =>
                 {
                     b.Navigation("InvoicesHistory");
+
+                    b.Navigation("ReservationList");
 
                     b.Navigation("VehicleList");
                 });

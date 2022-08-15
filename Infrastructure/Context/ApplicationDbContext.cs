@@ -51,6 +51,10 @@ namespace Infrastructure.Context
                 .Property(p => p.Role)
                 .HasConversion(v => v.ToString(),
                 v => (Roles)Enum.Parse(typeof(Roles), v));
+
         }
     }
 }
+            
+                
+                

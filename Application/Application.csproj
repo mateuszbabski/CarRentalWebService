@@ -7,16 +7,32 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Customer\Commands\" />
-    <Folder Include="Features\Customer\Queries\" />
-    <Folder Include="Features\Invoice\Commands\" />
-    <Folder Include="Features\Invoice\Queries\" />
-    <Folder Include="Features\RentalCompany\Commands\" />
-    <Folder Include="Features\RentalCompany\Queries\" />
-    <Folder Include="Features\Reservation\Commands\" />
-    <Folder Include="Features\Reservation\Queries\" />
-    <Folder Include="Features\Vehicle\Commands\" />
-    <Folder Include="Features\Vehicle\Queries\" />
+    <Folder Include="Features\Customers\Commands\DeleteCustomer\" />
+    <Folder Include="Features\Customers\Commands\CreateCustomer\" />
+    <Folder Include="Features\Customers\Commands\UpdateCustomer\" />
+    <Folder Include="Features\Customers\Queries\GetCustomerById\" />
+    <Folder Include="Features\Customers\Queries\GetAllCustomersList\" />
+    <Folder Include="Features\Customers\Queries\GetCustomerBySearch\" />
+    <Folder Include="Features\Invoices\Commands\CreateInvoice\" />
+    <Folder Include="Features\Invoices\Commands\DeleteInvoice\" />
+    <Folder Include="Features\Invoices\Commands\UpdateInvoice\" />
+    <Folder Include="Features\Invoices\Queries\GetAllInvoicesList\" />
+    <Folder Include="Features\Invoices\Queries\GetInvoiceById\" />
+    <Folder Include="Features\Invoices\Queries\GetInvoiceBySearch\" />
+    <Folder Include="Features\RentalCompanies\Commands\CreateRentalCompany\" />
+    <Folder Include="Features\RentalCompanies\Commands\DeleteRentalCompany\" />
+    <Folder Include="Features\RentalCompanies\Commands\UpdateRentalCompany\" />
+    <Folder Include="Features\RentalCompanies\Queries\GetRentalCompanyById\" />
+    <Folder Include="Features\RentalCompanies\Queries\GetAllRentalCompaniesList\" />
+    <Folder Include="Features\RentalCompanies\Queries\GetRentalCompanyBySearch\" />
+    <Folder Include="Features\Reservations\Commands\CreateReservation\" />
+    <Folder Include="Features\Reservations\Commands\DeleteReservation\" />
+    <Folder Include="Features\Reservations\Commands\UpdateReservation\" />
+    <Folder Include="Features\Reservations\Queries\GetReservationById\" />
+    <Folder Include="Features\Reservations\Queries\GetAllReservationsList\" />
+    <Folder Include="Features\Vehicles\Queries\GetAllVehiclesList\" />
+    <Folder Include="Features\Vehicles\Queries\GetVehicleById\" />
+    <Folder Include="Features\Vehicles\Queries\GetVehicleBySearch\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +40,8 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="FluentValidation" Version="11.2.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.0" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
   </ItemGroup>
 

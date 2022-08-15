@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220814145841_Init1")]
+    [Migration("20220815050929_Init1")]
     partial class Init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -303,7 +303,7 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("CustomerId");
 
                     b.HasOne("Domain.Entities.RentalCompany", "RentalCompany")
-                        .WithMany()
+                        .WithMany("ReservationList")
                         .HasForeignKey("RentalCompanyId");
 
                     b.HasOne("Domain.Entities.Vehicle", "Vehicle")
@@ -336,6 +336,8 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.RentalCompany", b =>
                 {
                     b.Navigation("InvoicesHistory");
+
+                    b.Navigation("ReservationList");
 
                     b.Navigation("VehicleList");
                 });

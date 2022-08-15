@@ -13,5 +13,6 @@ namespace Application.Interfaces
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
         Task UpdateAsync(T entity);
+        //Task<T> GetByEmailAsync(string email);
     }
 }
