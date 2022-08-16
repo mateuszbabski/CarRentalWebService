@@ -36,17 +36,7 @@ namespace Application.UnitTest.Vehicles
             //arrange
             var vehicle = new Vehicle
             {
-                Id = 1,
-                //Brand = "BMW",
-                //Model = "Z3",
-                //Type = "Cabrio",
-                //NumberOfSeats = 2,
-                //FuelType = "Petrol",
-                //ProductionYear = 1999,
-                //Color = "Black",
-                //IsAvailable = true,
-                //DailyCost = 300,
-                //RentalCompanyId = 1
+                Id = 1
             };
 
             _validatorMock
