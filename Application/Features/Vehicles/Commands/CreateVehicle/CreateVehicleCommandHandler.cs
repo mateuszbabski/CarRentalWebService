@@ -32,10 +32,10 @@ namespace Application.Features.Vehicles.Commands.CreateVehicle
             if (!validationResult.IsValid)
                 throw new ValidationException();
 
-            var vehicle = _mapper.Map<Vehicle>(request);
-            vehicle.RentalCompanyId = companyId;
+            var mappedVehicle = _mapper.Map<Vehicle>(request);
+            mappedVehicle.RentalCompanyId = companyId;
 
-            vehicle = await _repository.AddAsync(vehicle);
+            var vehicle = await _repository.AddAsync(mappedVehicle);
 
             return vehicle.Id;
         }

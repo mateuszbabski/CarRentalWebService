@@ -1,4 +1,5 @@
 ﻿using Application.Authentication;
+using Application.Features.Vehicles.Commands.CreateVehicle;
 using Application.Interfaces;
 using Application.Middleware;
 using FluentValidation;
@@ -24,6 +25,7 @@ namespace Application
 
             services.AddScoped<IValidator<RegisterRentalCompanyRequest>, RegisterRentalCompanyValidator>();
             services.AddScoped<IValidator<RegisterCustomerRequest>, RegisterCustomerValidator>();
+            //services.AddScoped<IValidator<CreateVehicleCommand>, CreateVehicleCommandValidator>();
 
 
 
