@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.RentalCompany
+namespace Application.Features.RentalCompanies
 {
     public class RentalCompanyViewModel
     {

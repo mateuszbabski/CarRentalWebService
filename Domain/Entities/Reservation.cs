@@ -14,7 +14,9 @@ namespace Domain.Entities
         public DateTime ReservationEnd { get; set; }
         public string Status { get; set; }
         public decimal DailyCost { get; set; }
-
+        public int CustomerId { get; set; }
+        public int RentalCompanyId { get; set; }
+        public int VehicleId { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual RentalCompany RentalCompany { get; set; }
         public virtual Vehicle Vehicle { get; set; }

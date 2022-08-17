@@ -1,6 +1,6 @@
 ﻿using Application.Authentication;
 using Application.Features.RentalCompanies.Queries.GetRentalCompanyById;
-using Application.Features.RentalCompany;
+using Application.Features.RentalCompanies;
 using Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

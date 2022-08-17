@@ -12,5 +12,6 @@ namespace Application.Features.Vehicles.Commands.UpdateVehicle
         public int Id { get; set; }
         public string Color { get; set; }
         public decimal DailyCost { get; set; }
+        public bool IsAvailable { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Application.Authentication;
-using Application.Features.RentalCompany;
+using Application.Features.RentalCompanies;
 using Application.Features.Vehicles;
 using Application.Features.Vehicles.Commands.CreateVehicle;
 using AutoMapper;

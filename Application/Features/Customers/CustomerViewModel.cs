@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Customer
+namespace Application.Features.Customers
 {
-    internal class CustomerViewModel
+    public class CustomerViewModel
     {
     }
 }

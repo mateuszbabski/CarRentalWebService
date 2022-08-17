@@ -24,9 +24,6 @@
     <Folder Include="Features\RentalCompanies\Commands\UpdateRentalCompany\" />
     <Folder Include="Features\RentalCompanies\Queries\GetAllRentalCompaniesList\" />
     <Folder Include="Features\RentalCompanies\Queries\GetRentalCompanyBySearch\" />
-    <Folder Include="Features\Reservations\Commands\CreateReservation\" />
-    <Folder Include="Features\Reservations\Commands\DeleteReservation\" />
-    <Folder Include="Features\Reservations\Commands\UpdateReservation\" />
     <Folder Include="Features\Reservations\Queries\GetReservationById\" />
     <Folder Include="Features\Reservations\Queries\GetAllReservationsList\" />
     <Folder Include="Features\Vehicles\Queries\GetVehicleBySearch\" />

@@ -1,4 +1,4 @@
-﻿using Application.Features.RentalCompany;
+﻿using Application.Features.RentalCompanies;
 using MediatR;
 using System;
 using System.Collections.Generic;

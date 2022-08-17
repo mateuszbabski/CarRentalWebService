@@ -33,6 +33,7 @@ namespace Application.Features.Vehicles.Commands.UpdateVehicle
 
             vehicle.Color = request.Color;
             vehicle.DailyCost = request.DailyCost;
+            vehicle.IsAvailable = request.IsAvailable;
 
             var vehicleDto = _mapper.Map<Vehicle>(vehicle);
 

@@ -1,5 +1,5 @@
 ﻿using Application.Exceptions;
-using Application.Features.RentalCompany;
+using Application.Features.RentalCompanies;
 using Application.Interfaces;
 using AutoMapper;
 using MediatR;
