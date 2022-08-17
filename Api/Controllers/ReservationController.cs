@@ -2,9 +2,14 @@
 using Application.Features.Reservations.Commands.CreateReservation;
 using Application.Features.Reservations.Commands.DeleteReservation;
 using Application.Features.Reservations.Commands.UpdateReservation;
+using Application.Features.Reservations.Queries.GetAllReservationsList;
+using Application.Features.Reservations.Queries.GetReservationById;
+using Application.Features.Vehicles;
 using Application.Features.Vehicles.Commands.CreateVehicle;
 using Application.Features.Vehicles.Commands.DeleteVehicle;
 using Application.Features.Vehicles.Commands.UpdateVehicle;
+using Application.Features.Vehicles.Queries.GetAllVehiclesList;
+using Application.Features.Vehicles.Queries.GetVehicleById;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -47,6 +52,26 @@ namespace Api.Controllers
         {
             await _mediator.Send(request);
             return NoContent();
+        }
+
+        [Authorize(Roles = "Customer")]
+        [HttpGet("GetAllReservationsForCustomer")]
+        public async Task<ActionResult<IEnumerable<ReservationViewModel>>> GetAll()
+        {
+            var reservationList = await _mediator.Send(new GetAllReservationsListQuery());
+            return Ok(reservationList);
+        }
+
+        [Authorize(Roles = "Customer")]
+        [HttpGet("{id}", Name = "GetReservationById")]
+        public async Task<ActionResult<ReservationViewModel>> GetById(int id)
+        {
+            var reservation = await _mediator.Send(new GetReservationByIdQuery()
+            {
+                Id = id
+            });
+
+            return Ok(reservation);
         }
     } 
 }

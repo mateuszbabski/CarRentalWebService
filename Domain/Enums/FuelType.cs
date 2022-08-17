@@ -9,6 +9,7 @@ namespace Domain.Enums
     public enum FuelType
     {
         Gas,
+        Petrol,
         Diesel,
         Hybrid,
         Electric

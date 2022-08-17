@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class Init1 : Migration
+    public partial class initialize : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -78,7 +78,7 @@ namespace Infrastructure.Migrations
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false),
                     DailyCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    RentalCompanyId = table.Column<int>(type: "int", nullable: true),
+                    RentalCompanyId = table.Column<int>(type: "int", nullable: false),
                     CreatedById = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -88,7 +88,8 @@ namespace Infrastructure.Migrations
                         name: "FK_Vehicles_RentalCompanies_RentalCompanyId",
                         column: x => x.RentalCompanyId,
                         principalTable: "RentalCompanies",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

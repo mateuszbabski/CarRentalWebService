@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220815050929_Init1")]
-    partial class Init1
+    [Migration("20220817161133_initialize")]
+    partial class initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -256,7 +256,7 @@ namespace Infrastructure.Migrations
                     b.Property<int>("ProductionYear")
                         .HasColumnType("int");
 
-                    b.Property<int?>("RentalCompanyId")
+                    b.Property<int>("RentalCompanyId")
                         .HasColumnType("int");
 
                     b.Property<string>("Type")
@@ -319,11 +319,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Vehicle", b =>
                 {
-                    b.HasOne("Domain.Entities.RentalCompany", "RentalCompany")
+                    b.HasOne("Domain.Entities.RentalCompany", null)
                         .WithMany("VehicleList")
-                        .HasForeignKey("RentalCompanyId");
-
-                    b.Navigation("RentalCompany");
+                        .HasForeignKey("RentalCompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Customer", b =>

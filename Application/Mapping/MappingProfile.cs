@@ -1,5 +1,6 @@
 ﻿using Application.Authentication;
 using Application.Features.RentalCompanies;
+using Application.Features.Reservations;
 using Application.Features.Vehicles;
 using Application.Features.Vehicles.Commands.CreateVehicle;
 using AutoMapper;
@@ -33,8 +34,26 @@ namespace Application.Mapping
             CreateMap<VehicleViewModel, Vehicle>().ReverseMap();
 
             CreateMap<RentalCompanyViewModel, RentalCompany>().ReverseMap();
-                
-                
+
+            CreateMap<Reservation, ReservationViewModel>()
+                .ForMember(c => c.Brand, c => c.MapFrom(s => s.Vehicle.Brand))
+                .ForMember(c => c.Model, c => c.MapFrom(s => s.Vehicle.Model))
+                .ForMember(c => c.Type, c => c.MapFrom(s => s.Vehicle.Type))
+                .ForMember(c => c.Color, c => c.MapFrom(s => s.Vehicle.Color))
+                .ForMember(c => c.ProductionYear, c => c.MapFrom(s => s.Vehicle.ProductionYear))
+                .ForMember(c => c.DailyCost, c => c.MapFrom(s => s.Vehicle.DailyCost))
+                .ForMember(c => c.FuelType, c => c.MapFrom(s => s.Vehicle.FuelType))
+                .ForMember(c => c.NumberOfSeats, c => c.MapFrom(s => s.Vehicle.NumberOfSeats))
+                .ForMember(c => c.CustomerFirstName, c => c.MapFrom(s => s.Customer.FirstName))
+                .ForMember(c => c.CustomerLastName, c => c.MapFrom(s => s.Customer.LastName))
+                .ForMember(c => c.CompanyName, c => c.MapFrom(s => s.RentalCompany.CompanyName))
+                .ForMember(c => c.ReservationStart, c => c.MapFrom(s => s.ReservationStart))
+                .ForMember(c => c.ReservationEnd, c => c.MapFrom(s => s.ReservationEnd));
+            //    .ReverseMap();
+
         }
     }
 }
+
+
+

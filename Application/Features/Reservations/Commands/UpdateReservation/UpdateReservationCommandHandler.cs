@@ -25,14 +25,11 @@ namespace Application.Features.Reservations.Commands.UpdateReservation
         {
             var userId = _userService.UserId;
             var reservation = await _reservationRepository.GetByIdAsync(request.Id);
-            if (reservation == null || userId != reservation.CustomerId)
+            if (reservation == null || userId != reservation.Customer.Id)
                 throw new NotFoundException();
 
             reservation.ReservationStart = request.ReservationStart;
             reservation.ReservationEnd = request.ReservationEnd;
-            
-
-            //var vehicleDto = _mapper.Map<Vehicle>(vehicle);
 
             await _reservationRepository.UpdateAsync(reservation);
 

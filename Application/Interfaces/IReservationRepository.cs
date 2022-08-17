@@ -9,5 +9,7 @@ namespace Application.Interfaces
 {
     public interface IReservationRepository : IGenericRepository<Reservation>
     {
+        Task<IEnumerable<Reservation>> GetAllReservationsForCustomerIdAsync(int customerId);
+        Task<Reservation> GetReservationByIdForCustomerAsync(int customerId, int reservationId);
     }
 }

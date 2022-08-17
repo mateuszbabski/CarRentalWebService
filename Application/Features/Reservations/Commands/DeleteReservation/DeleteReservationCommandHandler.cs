@@ -25,7 +25,7 @@ namespace Application.Features.Reservations.Commands.DeleteReservation
             var userId = _userService.UserId;
 
             var reservation = await _reservationRepository.GetByIdAsync(request.Id);
-            if (reservation == null || reservation.CustomerId != userId)
+            if (reservation == null || reservation.Customer.Id != userId)
                 throw new NotFoundException("Reservation not found or you dont have an access");
 
             await _reservationRepository.DeleteAsync(reservation);

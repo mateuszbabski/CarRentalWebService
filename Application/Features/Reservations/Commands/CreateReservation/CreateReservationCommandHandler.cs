@@ -56,9 +56,9 @@ namespace Application.Features.Reservations.Commands.CreateReservation
                 ReservationEnd = request.ReservationEnd,
                 Status = "Pending",
                 DailyCost = vehicle.DailyCost,
-                CustomerId = customer.Id,
-                VehicleId = vehicle.Id,
-                RentalCompanyId = company.Id,
+                Vehicle = vehicle,
+                RentalCompany = company,
+                Customer = customer,
             };
 
             var reservationRepo = await _reservationRepository.AddAsync(newReservation);
