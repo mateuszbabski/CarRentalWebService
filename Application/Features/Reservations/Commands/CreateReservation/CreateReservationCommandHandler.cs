@@ -55,7 +55,6 @@ namespace Application.Features.Reservations.Commands.CreateReservation
                 ReservationStart = request.ReservationStart,
                 ReservationEnd = request.ReservationEnd,
                 Status = "Pending",
-                DailyCost = vehicle.DailyCost,
                 Vehicle = vehicle,
                 RentalCompany = company,
                 Customer = customer,

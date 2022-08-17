@@ -40,5 +40,9 @@ namespace Infrastructure.Repositories
         {
             return await _dbContext.RentalCompanies.Include(x => x.VehicleList).FirstOrDefaultAsync(x => x.Id == id);
         }
+        public async Task<IEnumerable<RentalCompany>> GetAllRentalCompaniesListAsync()
+        {
+            return await _dbContext.RentalCompanies.Include(x => x.VehicleList).ToListAsync();
+        }
     }
 }

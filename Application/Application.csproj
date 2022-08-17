@@ -22,7 +22,6 @@
     <Folder Include="Features\RentalCompanies\Commands\CreateRentalCompany\" />
     <Folder Include="Features\RentalCompanies\Commands\DeleteRentalCompany\" />
     <Folder Include="Features\RentalCompanies\Commands\UpdateRentalCompany\" />
-    <Folder Include="Features\RentalCompanies\Queries\GetAllRentalCompaniesList\" />
     <Folder Include="Features\RentalCompanies\Queries\GetRentalCompanyBySearch\" />
     <Folder Include="Features\Vehicles\Queries\GetVehicleBySearch\" />
   </ItemGroup>

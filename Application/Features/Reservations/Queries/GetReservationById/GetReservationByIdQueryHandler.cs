@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Exceptions;
+using Application.Interfaces;
 using AutoMapper;
 using MediatR;
 using System;
@@ -26,6 +27,8 @@ namespace Application.Features.Reservations.Queries.GetReservationById
             var customerId = _userService.UserId;
 
             var reservation = await _reservationRepository.GetReservationByIdForCustomerAsync(customerId, request.Id);
+            if (reservation == null)
+                throw new NotFoundException();
 
             return _mapper.Map<ReservationViewModel>(reservation);
         }

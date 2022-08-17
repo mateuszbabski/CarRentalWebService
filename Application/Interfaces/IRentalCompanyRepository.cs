@@ -13,5 +13,6 @@ namespace Application.Interfaces
         Task<RentalCompany> GetRentalCompanyByEmailAsync(string email);
         Task<RentalCompany> GetRentalCompanyByIdAsync(int id);
         Task UpdateRentalCompanyAsync(RentalCompany company);
+        Task<IEnumerable<RentalCompany>> GetAllRentalCompaniesListAsync();
     }
 }

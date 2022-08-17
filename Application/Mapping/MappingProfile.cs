@@ -49,7 +49,8 @@ namespace Application.Mapping
                 .ForMember(c => c.CompanyName, c => c.MapFrom(s => s.RentalCompany.CompanyName))
                 .ForMember(c => c.ReservationStart, c => c.MapFrom(s => s.ReservationStart))
                 .ForMember(c => c.ReservationEnd, c => c.MapFrom(s => s.ReservationEnd));
-            //    .ReverseMap();
+            
+            
 
         }
     }

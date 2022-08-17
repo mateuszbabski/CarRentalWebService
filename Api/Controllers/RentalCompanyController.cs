@@ -4,6 +4,7 @@ using Application.Features.RentalCompanies;
 using Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.RentalCompanies.Queries.GetAllRentalCompaniesList;
 
 namespace Api.Controllers
 {
@@ -50,6 +51,14 @@ namespace Api.Controllers
                 Id = id
             });
             return Ok(rentalCompany);
+        }
+
+        [HttpGet("GetAllCompanies")]
+        public async Task<ActionResult<IEnumerable<RentalCompanyViewModel>>> GetAllRentalCompaniesAsync()
+        {
+            var rentalCompaniesList = await _mediator.Send(new GetAllRentalCompaniesListQuery());
+            
+            return Ok(rentalCompaniesList);
         }
     }
 }
