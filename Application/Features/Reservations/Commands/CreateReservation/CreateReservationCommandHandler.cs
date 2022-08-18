@@ -18,7 +18,6 @@ namespace Application.Features.Reservations.Commands.CreateReservation
         private readonly IRentalCompanyRepository _companyRepository;
         private readonly ICustomerRepository _customerRepository;
         private readonly IReservationRepository _reservationRepository;
-        private readonly IMapper _mapper;
         private readonly ICurrentUserService _userService;
 
         public CreateReservationCommandHandler(
@@ -26,14 +25,12 @@ namespace Application.Features.Reservations.Commands.CreateReservation
             IRentalCompanyRepository companyRepository,
             ICustomerRepository customerRepository,
             IReservationRepository reservationRepository,
-            IMapper mapper,
             ICurrentUserService userService)
         {
             _vehicleRepository = vehicleRepository;
             _companyRepository = companyRepository;
             _customerRepository = customerRepository;
             _reservationRepository = reservationRepository;
-            _mapper = mapper;
             _userService = userService;
         }
 
