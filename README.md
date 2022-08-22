@@ -2,7 +2,7 @@
 
 In this project I'd implement register/authentication option for a customer and for a rental company separately. 
 
-Customer will be able to check companies, available vehicles and make a reservation for some one them. After returning a car customer gets invoice to pay. Customer keeps Reservation and Invoice history. 
+Customer will be able to check companies, available vehicles and make a reservation for some of them. After returning a car customer gets invoice to pay. Customer keeps Reservation and Invoice history. 
 
 Rental company as a web service user will be able to manipulate its vehicles (add, delete, change), keep invoices, vehicle list, and history of reservations.
 
