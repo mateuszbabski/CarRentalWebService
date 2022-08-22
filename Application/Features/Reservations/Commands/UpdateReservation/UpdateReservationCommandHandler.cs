@@ -23,9 +23,9 @@ namespace Application.Features.Reservations.Commands.UpdateReservation
 
         public async Task<Unit> Handle(UpdateReservationCommand request, CancellationToken cancellationToken)
         {
-            var userId = _userService.UserId;
-            var reservation = await _reservationRepository.GetByIdAsync(request.Id);
-            if (reservation == null || userId != reservation.Customer.Id)
+            var customerId = _userService.UserId;
+            var reservation = await _reservationRepository.GetReservationByIdForCustomerAsync(customerId, request.Id);
+            if (reservation == null)
                 throw new NotFoundException();
 
             reservation.ReservationStart = request.ReservationStart;

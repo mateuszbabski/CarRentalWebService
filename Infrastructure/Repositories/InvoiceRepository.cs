@@ -42,5 +42,29 @@ namespace Infrastructure.Repositories
                 .Include(x => x.RentalCompany)
                 .ToListAsync();
         }
+
+        public async Task<Invoice> GetInvoiceByIdForCompanyAsync(int companyId, int invoiceId)
+        {
+            return await _dbContext
+                .Set<Invoice>()
+                .Where(x => x.RentalCompany.Id == companyId)
+                .Include(x => x.Vehicle)
+                .Include(x => x.Customer)
+                .Include(x => x.RentalCompany)
+                .Include(x => x.Reservation)
+                .FirstOrDefaultAsync(x => x.Id == invoiceId);
+        }
+
+        public async Task<IEnumerable<Invoice>> GetAllInvoicesForCompanyAsync(int companyId)
+        {
+            return await _dbContext
+                .Set<Invoice>()
+                .Where(x => x.RentalCompany.Id == companyId)
+                .Include(x => x.Vehicle)
+                .Include(x => x.Customer)
+                .Include(x => x.Reservation)
+                .Include(x => x.RentalCompany)
+                .ToListAsync();
+        }
     }
 }

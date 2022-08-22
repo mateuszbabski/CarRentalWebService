@@ -49,7 +49,8 @@ namespace Application.Mapping
                 .ForMember(c => c.CustomerLastName, c => c.MapFrom(s => s.Customer.LastName))
                 .ForMember(c => c.CompanyName, c => c.MapFrom(s => s.RentalCompany.CompanyName))
                 .ForMember(c => c.ReservationStart, c => c.MapFrom(s => s.ReservationStart))
-                .ForMember(c => c.ReservationEnd, c => c.MapFrom(s => s.ReservationEnd));
+                .ForMember(c => c.ReservationEnd, c => c.MapFrom(s => s.ReservationEnd))
+                .ForMember(c => c.Id, c => c.MapFrom(s => s.Id));
 
             CreateMap<Invoice, InvoiceViewModel>()
                 .ForMember(c => c.Brand, c => c.MapFrom(s => s.Vehicle.Brand))

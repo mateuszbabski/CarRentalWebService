@@ -8,6 +8,7 @@ namespace Application.Features.Reservations
 {
     public class ReservationViewModel
     {
+        public int Id { get; set; }
         public DateTime ReservationStart { get; set; }
         public DateTime ReservationEnd { get; set; }
         public string Status { get; set; }

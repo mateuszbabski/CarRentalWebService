@@ -23,6 +23,10 @@ namespace Api.Controllers
         }
         [Authorize(Roles = "Company")]
         [HttpPost("CreateVehicle")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<int>> AddVehicle([FromBody]CreateVehicleCommand request)
         {
             return await _mediator.Send(request);
@@ -30,6 +34,11 @@ namespace Api.Controllers
 
         [Authorize(Roles = "Company")]
         [HttpPut("{id}", Name = "UpdateVehicle")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> UpdateVehicle([FromBody] UpdateVehicleCommand request)
         {
             await _mediator.Send(request);
@@ -38,6 +47,11 @@ namespace Api.Controllers
 
         [Authorize(Roles = "Company")]
         [HttpDelete("{id}", Name = "DeleteVehicle")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> DeleteVehicle(int id)
         {
             var deleteVehicleCommand = new DeleteVehicleCommand()
@@ -49,6 +63,9 @@ namespace Api.Controllers
         }
 
         [HttpGet("GetAllVehicles")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<VehicleViewModel>>> GetAll()
         {
             var vehiclesList = await _mediator.Send(new GetAllVehiclesListQuery());
@@ -56,6 +73,9 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}", Name = "GetVehicleById")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<VehicleViewModel>> GetById(int id)
         {
             var vehicle = await _mediator.Send(new GetVehicleByIdQuery()
@@ -67,6 +87,9 @@ namespace Api.Controllers
         }
 
         [HttpGet("GetVehicleByCompanyId")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<VehicleViewModel>>> GetByCompanyId(int id)
         {
             var vehicle = await _mediator.Send(new GetAllVehiclesForCompanyQuery()

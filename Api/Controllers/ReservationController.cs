@@ -2,8 +2,10 @@
 using Application.Features.Reservations.Commands.CreateReservation;
 using Application.Features.Reservations.Commands.DeleteReservation;
 using Application.Features.Reservations.Commands.UpdateReservation;
+using Application.Features.Reservations.Queries.GetAllReservationListAsCompany;
 using Application.Features.Reservations.Queries.GetAllReservationsList;
 using Application.Features.Reservations.Queries.GetReservationById;
+using Application.Features.Reservations.Queries.GetReservationByIdAsCompany;
 using Application.Features.Vehicles;
 using Application.Features.Vehicles.Commands.CreateVehicle;
 using Application.Features.Vehicles.Commands.DeleteVehicle;
@@ -29,14 +31,23 @@ namespace Api.Controllers
 
         [Authorize(Roles = "Customer")]
         [HttpPost("Make-reservation")]
-        public async Task<ActionResult<ReservationViewModel>> AddVehicle([FromBody] CreateReservationCommand request)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<ReservationViewModel>> AddReservation([FromBody] CreateReservationCommand request)
         {
             return await _mediator.Send(request);
         }
 
         [Authorize(Roles = "Customer")]
         [HttpDelete("{id}", Name = "DeleteReservation")]
-        public async Task<ActionResult> DeleteVehicle(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> DeleteReservation(int id)
         {
             var deleteReservationCommand = new DeleteReservationCommand()
             {
@@ -48,7 +59,12 @@ namespace Api.Controllers
 
         [Authorize(Roles = "Customer")]
         [HttpPut("{id}", Name = "UpdateReservation")]
-        public async Task<ActionResult> UpdateVehicle([FromBody] UpdateReservationCommand request)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> UpdateReservation([FromBody] UpdateReservationCommand request)
         {
             await _mediator.Send(request);
             return NoContent();
@@ -56,6 +72,10 @@ namespace Api.Controllers
 
         [Authorize(Roles = "Customer")]
         [HttpGet("GetAllReservationsForCustomer")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<ReservationViewModel>>> GetAll()
         {
             var reservationList = await _mediator.Send(new GetAllReservationsListQuery());
@@ -63,7 +83,11 @@ namespace Api.Controllers
         }
 
         [Authorize(Roles = "Customer")]
-        [HttpGet("{id}", Name = "GetReservationById")]
+        [HttpGet("GetReservationById")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<ReservationViewModel>> GetById(int id)
         {
             var reservation = await _mediator.Send(new GetReservationByIdQuery()
@@ -73,5 +97,33 @@ namespace Api.Controllers
 
             return Ok(reservation);
         }
+
+        [Authorize(Roles = "Company")]
+        [Authorize(Roles = "Company")]
+        [HttpGet("GetAllReservationsAsCompany")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<IEnumerable<ReservationViewModel>>> GetAllAsCompany()
+        {
+            var reservationList = await _mediator.Send(new GetAllReservationListAsCompanyQuery());
+            return Ok(reservationList);
+        }
+
+        [HttpGet("GetReservationByIdAsCompany")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<ReservationViewModel>> GetByIdAsCompany(int id)
+        {
+            var reservation = await _mediator.Send(new GetReservationByIdAsCompanyQuery()
+            { 
+                Id = id
+            });
+            return Ok(reservation);
+        }
+
     } 
 }

@@ -11,5 +11,7 @@ namespace Application.Interfaces
     {
         Task<Invoice> GetInvoiceByIdForCustomerAsync(int customerId, int invoiceId);
         Task<IEnumerable<Invoice>> GetAllInvoicesForCustomerAsync(int customerId);
+        Task<Invoice> GetInvoiceByIdForCompanyAsync(int companyId, int invoiceId);
+        Task<IEnumerable<Invoice>> GetAllInvoicesForCompanyAsync(int companyId);
     }
 }
