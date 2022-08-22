@@ -11,5 +11,7 @@ namespace Application.Interfaces
     {
         Task<IEnumerable<Reservation>> GetAllReservationsForCustomerIdAsync(int customerId);
         Task<Reservation> GetReservationByIdForCustomerAsync(int customerId, int reservationId);
+        Task<IEnumerable<Reservation>> GetAllReservationsForCompanyIdAsync(int companyId);
+        Task<Reservation> GetReservationByIdForCompanyAsync(int companyId, int reservationId);
     }
 }

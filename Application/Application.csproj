@@ -13,12 +13,6 @@
     <Folder Include="Features\Customers\Queries\GetCustomerById\" />
     <Folder Include="Features\Customers\Queries\GetAllCustomersList\" />
     <Folder Include="Features\Customers\Queries\GetCustomerBySearch\" />
-    <Folder Include="Features\Invoices\Commands\CreateInvoice\" />
-    <Folder Include="Features\Invoices\Commands\DeleteInvoice\" />
-    <Folder Include="Features\Invoices\Commands\UpdateInvoice\" />
-    <Folder Include="Features\Invoices\Queries\GetAllInvoicesList\" />
-    <Folder Include="Features\Invoices\Queries\GetInvoiceById\" />
-    <Folder Include="Features\Invoices\Queries\GetInvoiceBySearch\" />
     <Folder Include="Features\RentalCompanies\Commands\CreateRentalCompany\" />
     <Folder Include="Features\RentalCompanies\Commands\DeleteRentalCompany\" />
     <Folder Include="Features\RentalCompanies\Commands\UpdateRentalCompany\" />

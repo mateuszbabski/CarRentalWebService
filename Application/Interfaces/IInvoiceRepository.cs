@@ -9,5 +9,7 @@ namespace Application.Interfaces
 {
     public interface IInvoiceRepository : IGenericRepository<Invoice>
     {
+        Task<Invoice> GetInvoiceByIdForCustomerAsync(int customerId, int invoiceId);
+        Task<IEnumerable<Invoice>> GetAllInvoicesForCustomerAsync(int customerId);
     }
 }
