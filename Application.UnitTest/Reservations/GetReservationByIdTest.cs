@@ -56,7 +56,7 @@ namespace Application.UnitTest.Reservations
             _userServiceMock.Setup(m => m.UserId).Returns(It.IsAny<int>());
 
             _reservationRepositoryMock
-                .Setup(m => m.GetAllReservationsForCustomerIdAsync(It.IsAny<int>()))
+                .Setup(m => m.GetReservationByIdForCustomerAsync(It.IsAny<int>(), It.IsAny<int>()))
                 .ThrowsAsync(new NotFoundException());
 
             //act
