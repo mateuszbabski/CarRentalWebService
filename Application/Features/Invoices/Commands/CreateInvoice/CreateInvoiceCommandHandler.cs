@@ -33,7 +33,7 @@ namespace Application.Features.Invoices.Commands.CreateInvoice
             if (reservation == null)
                 throw new NotFoundException("Reservation does not exist");
 
-            var rentDuration = Convert.ToDecimal(reservation.Result.ReservationEnd.DayOfYear - reservation.Result.ReservationStart.DayOfYear);
+            var rentDuration = Convert.ToDecimal((reservation.Result.ReservationEnd - reservation.Result.ReservationStart).TotalDays);
 
             var newInvoice = new Domain.Entities.Invoice()
             {
@@ -51,3 +51,4 @@ namespace Application.Features.Invoices.Commands.CreateInvoice
         }
     }
 }
+            
