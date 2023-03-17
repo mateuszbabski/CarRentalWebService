@@ -14,9 +14,9 @@ The purpose of the project was to create a simple car rental aggregator. Rental 
 
 ## Technologies
 
-- C# 10
-- .NetCore 6
-- EntityFrameworkCore 6.0.8
+- C# 11
+- .Net 7
+- EntityFrameworkCore 7.0.4
 - MSQLServer
 
 ## Setup
