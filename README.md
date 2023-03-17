@@ -36,6 +36,8 @@ $ cd CarRentalWebService
 $ dotnet restore
 ```
 
+#### Update appsettings.json 
+
 #### Create empty database, create migration and update database
 
 #### Set API Layer as startup project
